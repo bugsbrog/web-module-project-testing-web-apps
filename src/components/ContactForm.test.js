@@ -42,11 +42,61 @@ test('renders ONE error message if user enters less then 5 characters into first
 });
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
-    
+    //Arrange
+    render(<ContactForm/>)
+
+    //Act
+    // 1. Find the button
+    const button = screen.getByRole("button");
+    // Click the button
+    userEvent.click(button);
+
+    //Errors
+    const fNError = screen.queryByText(/error: firstName must have at least 5 characters/i);
+    const lNError = screen.queryByText(/error: lastName is a required field/i);
+    const emailError = screen.queryByText(/error: email must be a valid email address/i);
+
+    //Assert
+    //fNError
+    expect(fNError).toBeInTheDocument();
+    expect(fNError).toBeTruthy();
+    expect(fNError).not.toBeFalsy();
+
+    //lnError
+    expect(lNError).toBeInTheDocument();
+    expect(lNError).toBeTruthy();
+    expect(lNError).not.toBeFalsy();
+
+    //emailError
+    expect(emailError).toBeInTheDocument();
+    expect(emailError).toBeTruthy();
+    expect(emailError).not.toBeFalsy();
 });
 
 test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
-    
+    //Arrange
+    render(<ContactForm/>)
+
+    //Act
+    // 1. Find the firstName field
+    const firstName = screen.getByLabelText(/first name/i);
+    // 2. Type in a first name
+    userEvent.type(firstName, "Amy");
+    // 3. Find the lastName field
+    const lastName = screen.getByLabelText(/last name/i);
+    // 4. Type in a last name
+    userEvent.type(lastName, "Johnson");
+    // 5. Find the button
+    const button = screen.getByRole("button");
+    // Click the button
+    userEvent.click(button);
+
+    const emailError = screen.queryByText(/error: email must be a valid email address/i);
+
+    //Assert
+    expect(emailError).toBeInTheDocument();
+    expect(emailError).toBeTruthy();
+    expect(emailError).not.toBeFalsy();
 });
 
 test('renders "email must be a valid email address" if an invalid email is entered', async () => {
