@@ -4,7 +4,6 @@ import {render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import ContactForm from './ContactForm';
-import {wait} from "@testing-library/user-event/dist/utils";
 
 test('renders without errors', () => {
     //Arrange
@@ -82,11 +81,11 @@ test('renders ONE error message if user enters a valid first name and last name 
     // 1. Find the firstName field
     const firstName = screen.getByLabelText(/first name/i);
     // 2. Type in a first name
-    userEvent.type(firstName, "Amy");
+    userEvent.type(firstName, "Hannah");
     // 3. Find the lastName field
     const lastName = screen.getByLabelText(/last name/i);
     // 4. Type in a last name
-    userEvent.type(lastName, "Johnson");
+    userEvent.type(lastName, "Brog");
     // 5. Find the button
     const button = screen.getByRole("button");
     // 6. Click the button
@@ -150,7 +149,7 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
     // 3. Find the lastName field
     const lastName = screen.getByLabelText(/last name/i);
     // 4. Type in a last name
-    userEvent.type(lastName, "Johnson");
+    userEvent.type(lastName, "Brog");
     // 5. Find the email field
     const email = screen.getByLabelText(/email/i)
     // 6. Type in an email
@@ -162,7 +161,7 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 
     await waitFor(() => {
         const fN = screen.queryByText("Hannah");
-        const lN = screen.queryByText("Johnson");
+        const lN = screen.queryByText("Brog");
         const eM = screen.queryByText("han@gmail.com");
         const message = screen.queryByText("hello there");
 
@@ -191,4 +190,49 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 test('renders all fields text when all fields are submitted.', async () => {
     //Arrange
     render(<ContactForm/>)
-});
+
+    //Act
+    // 1. Find the firstName field
+    const firstName = screen.getByLabelText(/first name/i);
+    // 2. Type in a first name
+    userEvent.type(firstName, "Hannah");
+    // 3. Find the lastName field
+    const lastName = screen.getByLabelText(/last name/i);
+    // 4. Type in a last name
+    userEvent.type(lastName, "Brog");
+    // 5. Find the email field
+    const email = screen.getByLabelText(/email/i)
+    // 6. Type in an email
+    userEvent.type(email, "han@gmail.com");
+    // 7. Find the button
+    const button = screen.getByRole("button");
+    // 8. Click the button
+    userEvent.click(button);
+
+    await waitFor(() => {
+        const fN = screen.queryByText("Hannah");
+        const lN = screen.queryByText("Brog");
+        const eM = screen.queryByText("han@gmail.com");
+        const message = screen.queryByText("hello there");
+
+        //Assert
+        //fN
+        expect(fN).toBeInTheDocument();
+        expect(fN).toBeTruthy();
+        expect(fN).not.toBeFalsy();
+
+        //lN
+        expect(lN).toBeInTheDocument();
+        expect(lN).toBeTruthy();
+        expect(lN).not.toBeFalsy();
+
+        //eM
+        expect(eM).toBeInTheDocument();
+        expect(eM).toBeTruthy();
+        expect(eM).not.toBeFalsy();
+
+        //message
+        expect(message).not.toBeInTheDocument();
+        expect(message).not.toBeTruthy();
+    })
+})
