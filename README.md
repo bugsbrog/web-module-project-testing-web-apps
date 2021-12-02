@@ -19,7 +19,7 @@ As a developer, you will be writing tests for every component. As we've learned,
 
 ![Contact Example](project-goals.gif)
 
-***Make sure to complete your tasks one at a time and complete test each task before proceding forward.***
+***Make sure to complete your tasks one at a time and complete test each task before proceeding forward.***
 
 ## Instructions
 ### Task 1: Project Set Up
@@ -33,11 +33,28 @@ As a developer, you will be writing tests for every component. As we've learned,
 - [ ] **IMPORTANT** If a test fails, use the test runner's error messages to find out why it is failing
 
 ### Task 2: Project Requirements
-> *All of the work you will do today will be contained inside the ContactForm.test.js file. You will be tasked to write the code for at least 9 different tests on various parts of the ContactForm component. Please read the instructions for each test carefully.*
+> *All the work you will do today will be contained inside the ContactForm.test.js file. You will be tasked to write the code for at least 9 different tests on various parts of the ContactForm component. Please read the instructions for each test carefully.*
 
 #### Test Brainstorming
 * [ ] Run and play around with the form interface.
 * [ ] Write out a list of possible testcases for this application within Understanding-questions.md.
+
+-Possible Testcases-
+-Test to see if you can type into the first name field
+-Test to see if you can type into the last name field
+-Test to see if you can type into the email field
+-Test to see if you can type into the message field
+-Test to see if you can click the submit button
+-Test to see if an error shows up if you don't put in 5 or more letters for a first name
+-Test to see if an error shows up if you don't put in a last name
+-Test to see if an error shows up if you don't put in a correct/valid email address
+-Test to see if errors shows up if you don't put anything in any of the fields
+-Test to see if an error shows up if you fill out every field except the email field
+-Test to see if a message shows up if you submit a message
+-Test to see if you can submit a first name, last name, email, and message
+-Test to see if the first name, last name, email and message show up when you submit them
+(Not sure if we can do this test)-See if the fields clear if you refresh the page
+
 
 #### Complete a case that tests if:
 * [ ] the component renders the contact form component without errors.
